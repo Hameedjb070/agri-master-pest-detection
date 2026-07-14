@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Environment secrets
+.env
+
+# Datasets and trained weights are too large/binary for git.
+# We'll document how to (re)download/regenerate them in README instead.
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+models/*.pt
+models/*.pth
+
+# Jupyter / editor / OS junk
+.ipynb_checkpoints/
+.DS_Store
+.vscode/
