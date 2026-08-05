@@ -73,14 +73,37 @@ h1 {
     border: 1px solid #d0f0d0;
     padding: 10px 14px;
     border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
     font-size: 0.95rem;
 }
 
-.detection-card .conf {
-    color: #2e7d32;
+.detection-header {
+    display: flex;
+    justify-content: space-between;
     font-weight: 600;
+}
+
+.detection-header .conf {
+    color: #2e7d32;
+}
+
+.detection-body {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.detection-body p {
+    margin: 0;
+}
+
+.detection-body .disclaimer {
+    margin-top: 4px;
+    font-style: italic;
+    color: #777;
+    font-size: 0.78rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -100,5 +123,11 @@ h1 {
         background: #1a2b1a;
         border-color: #2d4a2d;
         color: #eee;
+    }
+    .detection-body {
+        color: #ccc;
+    }
+    .detection-body .disclaimer {
+        color: #999;
     }
 }

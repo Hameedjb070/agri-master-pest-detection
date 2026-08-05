@@ -79,7 +79,26 @@ function renderResults(data) {
     data.detections.forEach((det) => {
         const card = document.createElement("div");
         card.className = "detection-card";
-        card.innerHTML = `<span>${det.class}</span><span class="conf">${det.confidence}%</span>`;
+
+        const header = document.createElement("div");
+        header.className = "detection-header";
+        const displayName = det.info ? det.info.common_name : det.class;
+        header.innerHTML = `<span>${displayName}</span><span class="conf">${det.confidence}%</span>`;
+        card.appendChild(header);
+
+        if (det.info) {
+            const info = det.info;
+            const body = document.createElement("div");
+            body.className = "detection-body";
+            body.innerHTML = `
+                <p><strong>Damage:</strong> ${info.damage}</p>
+                <p><strong>How to avoid it:</strong> ${info.prevention}</p>
+                <p><strong>Treatment:</strong> ${info.treatment}</p>
+                <p class="disclaimer">${info.disclaimer}</p>
+            `;
+            card.appendChild(body);
+        }
+
         resultsEl.appendChild(card);
     });
 }
