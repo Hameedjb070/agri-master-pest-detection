@@ -4,9 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agri-Master</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Agri-Master</h1>
-    <p>AI-powered crop pest detection — coming soon.</p>
+    <main class="container">
+        <h1>🌱 Agri-Master</h1>
+        <p class="subtitle">AI-powered crop pest detection</p>
+
+        <label class="upload-box" id="uploadBox">
+            <input type="file" id="imageInput" accept="image/png, image/jpeg" hidden>
+            <span id="uploadLabel">Tap to choose a photo of a crop</span>
+        </label>
+
+        <div class="canvas-wrap">
+            <canvas id="canvas"></canvas>
+        </div>
+
+        <p id="status"></p>
+        <div id="results"></div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 </html>
