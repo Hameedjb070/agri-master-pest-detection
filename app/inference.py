@@ -11,6 +11,8 @@ from pathlib import Path
 
 from ultralytics import YOLO
 
+from pest_info import get_pest_info
+
 TRAINED_WEIGHTS = Path(__file__).resolve().parent.parent / "models" / "pest_yolov9_best.pt"
 FALLBACK_WEIGHTS = "yolov8n.pt"
 
@@ -45,10 +47,12 @@ def predict(image_path, confidence=0.25):
     result = results[0]
     for box in result.boxes:
         cls_id = int(box.cls[0])
+        class_name = result.names[cls_id]
         detections.append({
-            "class": result.names[cls_id],
+            "class": class_name,
             "confidence": round(float(box.conf[0]) * 100, 1),
             "box": [round(v, 1) for v in box.xyxy[0].tolist()],
+            "info": get_pest_info(class_name),
         })
 
     return {
