@@ -1,9 +1,29 @@
-# YOLOv9 Evaluation Results
+# Model Evaluation Results
 
-Evaluated on the held-out **test split** (562 images, never seen during training),
-using the `pest_yolov9_best.pt` weights produced by `notebooks/train_yolov9.ipynb`.
+Both models evaluated on the same held-out **test split** (562 images, never seen
+during training), on the same 15-class filtered dataset.
 
-## Overall
+## YOLOv9 vs Faster R-CNN
+
+| Metric | YOLOv9c (50 epochs) | Faster R-CNN (10 epochs) |
+|---|---|---|
+| mAP50 | **81.8%** | 78.2% |
+| mAP50-95 | **48.1%** | 44.3% |
+| Recall / mAR | 72.7% | 59.1% |
+
+**YOLOv9 outperformed Faster R-CNN here**, despite Faster R-CNN traditionally being
+considered the more accurate (if slower) architecture. This isn't a knock against
+Faster R-CNN's design - it comes down to training budget: YOLOv9 trained for 50
+epochs with early stopping and Ultralytics' built-in augmentation pipeline, while
+Faster R-CNN trained for only 10 epochs (chosen to fit within free Colab GPU time,
+since it's roughly 3-4x slower per image than YOLOv9). Given equal training budget,
+Faster R-CNN would likely close some or all of this gap. The deployed Flask app
+uses **YOLOv9** as the production model based on these results.
+
+Faster R-CNN weights: `notebooks/train_fasterrcnn.ipynb` produces `pest_fasterrcnn_best.pt`
+(a raw `state_dict`, not wired into the Flask app - kept as a documented comparison).
+
+## YOLOv9: Overall
 
 | Metric | Value | What it means |
 |---|---|---|
@@ -12,7 +32,7 @@ using the `pest_yolov9_best.pt` weights produced by `notebooks/train_yolov9.ipyn
 | Precision | 80.6% | Of everything flagged as a pest, how much actually was one |
 | Recall | 72.7% | Of all real pests present, how many were caught |
 
-## Per-class (mAP50)
+## YOLOv9: Per-class (mAP50)
 
 | Class | Images | Instances | Precision | Recall | mAP50 | mAP50-95 |
 |---|---|---|---|---|---|---|
