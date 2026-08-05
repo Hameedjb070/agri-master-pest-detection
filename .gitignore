@@ -13,8 +13,8 @@ data/raw/*
 data/processed/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
-models/*.pt
-models/*.pth
+*.pt
+*.pth
 
 # Jupyter / editor / OS junk
 .ipynb_checkpoints/
